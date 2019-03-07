@@ -131,11 +131,11 @@ redisSubsClient.on("connect", function (err) {
 
 });
 
-/*var recordCronWorkerId = function (workerId,cronId) {
-    console.log("-------------------- Corn Id Recording with Worker ----------------------------");
-    redisClient.rpush(workerId,cronId.toString());
+var recordCronWorkerId = function (workerId,cronId) {
+    console.log("-------------------- Corn Id "+cronId+" Recording with Worker "+workerId+"----------------------------");
+    redisClient.lpush(workerId,cronId.toString());
 
-}*/
+}
 
 
 var onNewJobRecieved = function()
@@ -167,9 +167,11 @@ var onNewJobRecieved = function()
                     var jobObj={id:varObj.reqId,job:job};
 
                     Jobs.push(jobObj);
+                    job.start();
+                    recordCronWorkerId(workerId,varObj.reqId);
 
-                    console.log("-------------------- Corn Id Recording with Worker ----------------------------");
-                    redisClient.rpush(workerId,varObj.reqId);
+                    /*console.log("-------------------- Corn Id Recording with Worker ----------------------------");
+                    redisClient.lpush(workerId,varObj.reqId);*/
                 }
                 else
                 {
@@ -194,26 +196,38 @@ redisSubsClient.subscribe('1:103:cron:removequeue', function (err, count) {
 
 });
 
-redisSubsClient.on('message',function (r) {
-    console.log(r);
+redisSubsClient.on('message',function (channel,key) {
+    var jsonString = messageFormatter.FormatMessage(undefined, "INFO", true, "Jobs removing");
+    logger.info('[DVP-ScheduledJobManager.Remove Cron] -  INFO ',jsonString);
     var job= Jobs.filter(function (item) {
-        return item.id=r;
+        return item.id==key;
     })
 
-    if(job[0].job)
+    if(Array.isArray(job)&& job[0] && job[0].job)
     {
+        var jsonString = messageFormatter.FormatMessage(undefined, "INFO", true, "Jobs removing");
+        logger.info('[DVP-ScheduledJobManager.Remove Cron] -  JOB found here ',jsonString);
         job[0].job.stop();
         Jobs = Jobs.filter(function (item) {
-            return item.id!=r;
+            return item.id!=key;
         })
+
+
     }
+    else
+    {
+        var jsonString = messageFormatter.FormatMessage(undefined, "INFO", true, "Jobs removing");
+        logger.error('[DVP-ScheduledJobManager.Remove Cron] -  JOB not found here ',jsonString);
+    }
+
+    redisClient.lrem(workerId,0,key);
 
 });
 
 
 
 
-setInterval(onNewJobRecieved,5000);
+ setInterval(onNewJobRecieved,5000);
 
 
 

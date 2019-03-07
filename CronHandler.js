@@ -4,6 +4,7 @@ var config= require('config');
 var authToken= config.Token;
 var messageFormatter = require('dvp-common/CommonMessageGenerator/ClientMessageJsonFormatter.js');
 var logger = require('dvp-common/LogHandler/CommonLogHandler.js').logger;
+var format=require('stringformat');
 
 function CronCallbackHandler(callbackObj)
 {
@@ -21,7 +22,7 @@ function CronCallbackHandler(callbackObj)
 
         if(callbackObj.CallbackData)
         {
-            croneCallbacks.body = result.CallbackData;
+            croneCallbacks.body = callbackObj.CallbackData;
         }
         httpReq(croneCallbacks, function (error, response, data) {
 
