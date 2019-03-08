@@ -1,20 +1,5 @@
 module.exports = {
-    "DB": {
-        "Type":"postgres",
-        "User":"",
-        "Password":"",
-        "Port":5432,
-        "Host":"",
-        "Database":""
-    },
-    "Host":
-    {
-        "domain": "127.0.0.1",
-        "port": "8080",
-        "version":"1.0.0.0",
-        "hostpath":"./config",
-        "logfilepath": ""
-    },
+
     "Redis":
     {
         "mode":"sentinel",//instance, cluster, sentinel

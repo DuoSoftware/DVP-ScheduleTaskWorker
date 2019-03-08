@@ -1,11 +1,23 @@
 
 var httpReq = require('request');
 var config= require('config');
-var authToken= config.Token;
+var authToken= config.Services.accessToken;
 var messageFormatter = require('dvp-common/CommonMessageGenerator/ClientMessageJsonFormatter.js');
 var logger = require('dvp-common/LogHandler/CommonLogHandler.js').logger;
 var format=require('stringformat');
-var scheduleUrl="http://"+config.Services.ScheduleWorkerHost+"/DVP/API/1.0.0.0/Crons/Recover";
+var validator = require('validator');
+
+var scheduleUrl;
+if (config.Services && config.Services.ScheduleWorkerHost && config.Services.ScheduleWorkerPort&& config.Services.ScheduleWorkerVersion) {
+
+    scheduleUrl = format("http://{0}/DVP/API/{1}/Crons/Recover", config.Services.ScheduleWorkerHost, config.Services.ScheduleWorkerVersion);
+    if (validator.isIP(config.Services.ScheduleWorkerHost))
+        scheduleUrl = format("http://{0}:{1}/DVP/API/{2}/Crons/Recover", config.Services.ScheduleWorkerHost, config.Services.ScheduleWorkerPort, config.Services.ScheduleWorkerVersion);
+}
+
+console.log(scheduleUrl);
+
+//var scheduleUrl="http://"+config.Services.ScheduleWorkerHost+"/DVP/API/1.0.0.0/Crons/Recover";
 
 function CronCallbackHandler(callbackObj)
 {
@@ -63,7 +75,7 @@ function SearchCrashedJobData(ids,callback)
 
         var croneCallbacks =
             {
-                url: scheduleUrl+"Crons/Recover",
+                url: scheduleUrl,
                 method: "POST",
                 headers: {
                     'authorization': "bearer "+authToken,
