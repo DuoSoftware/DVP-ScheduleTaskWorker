@@ -47,7 +47,10 @@ module.exports = {
         "port": "HOST_SCHEDULEWORKER_PORT",
         "version": "HOST_VERSION"
     },
-    "Token": "HOST_TOKEN"
+    "Token": "HOST_TOKEN",
+    "ServiceHosts":{
+        "ScheduleWorker":"SYS_SCHEDULEWORKER_HOST"
+    }
 };
 
 //NODE_CONFIG_DIR

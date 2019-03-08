@@ -63,7 +63,7 @@ function SearchCrashedJobData(ids,callback)
 
         var croneCallbacks =
             {
-                url: scheduleUrl,
+                url: scheduleUrl+"Crons/Recover",
                 method: "POST",
                 headers: {
                     'authorization': "bearer "+authToken,
