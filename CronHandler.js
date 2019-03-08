@@ -5,7 +5,7 @@ var authToken= config.Token;
 var messageFormatter = require('dvp-common/CommonMessageGenerator/ClientMessageJsonFormatter.js');
 var logger = require('dvp-common/LogHandler/CommonLogHandler.js').logger;
 var format=require('stringformat');
-var scheduleUrl=config.ServiceHosts.ScheduleWorker;
+var scheduleUrl="http://"+config.Service.ScheduleWorkerHost+"/DVP/API/1.0.0.0/Crons/Recover";
 
 function CronCallbackHandler(callbackObj)
 {
