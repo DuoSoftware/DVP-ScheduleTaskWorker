@@ -44,9 +44,17 @@ module.exports = {
     "Host":
     {
         "domain": "HOST_NAME",
-        "port": "HOST_SCHEDULEWORKER_PORT",
+        "port": "HOST_SCHEDULETASKWORKER_PORT",
         "version": "HOST_VERSION"
     },
+    
+    "Services":{
+        "accessToken": "HOST_TOKEN",
+        "ScheduleWorkerHost":"HOST_SCHEDULEWORKER_HOST",
+        "ScheduleWorkerPort": "HOST_SCHEDULEWORKER_PORT",
+        "ScheduleWorkerVersion": "HOST_SCHEDULEWORKER_VERSION"
+    }
+
     
    
     
