@@ -208,6 +208,8 @@ var onNewJobRecieved = function()
 
 var jobCreater = function(varObj,isRecordNeeded)
 {
+
+    console.log(JSON.stringify(varObj));
     if(varObj.CronePattern && varObj.Timezone && varObj.UniqueId)
     {
         console.log("Job Creation of "+varObj.UniqueId);
