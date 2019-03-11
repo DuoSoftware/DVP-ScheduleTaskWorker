@@ -210,7 +210,12 @@ var jobCreater = function(varObj,isRecordNeeded)
 {
 
     console.log(JSON.stringify(varObj));
-    if(varObj.CronePattern && varObj.Timezone && varObj.UniqueId)
+
+    if(varObj.checkDate)
+    {
+        varObj.CronePattern = new Date(varObj.CronePattern);
+    }
+    if(varObj.CronePattern  && varObj.UniqueId)
     {
         console.log("Job Creation of "+varObj.UniqueId);
         try {
@@ -218,9 +223,7 @@ var jobCreater = function(varObj,isRecordNeeded)
 
                 CroneHandler.CronCallbackHandler(this);
 
-            }, function () {
-
-            }, true,varObj.Timezone,varObj.callback);
+            }, null, false,varObj.Timezone,varObj.callback);
 
             var jobObj={id:varObj.UniqueId,job:job};
 
