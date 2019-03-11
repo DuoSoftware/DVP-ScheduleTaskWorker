@@ -256,7 +256,7 @@ redisSubsClient.subscribe('1:103:cron:removequeue', function (err, count) {
 });
 
 redisSubsClient.on('message',function (channel,key) {
-    var jsonString = messageFormatter.FormatMessage(undefined, "INFO", true, "Jobs removing");
+    var jsonString = messageFormatter.FormatMessage(undefined, "INFO", true, "Jobs removing "+key);
     logger.info('[DVP-ScheduledJobManager.Remove Cron] -  INFO ',jsonString);
     var job= Jobs.filter(function (item) {
         return item.id==key;
