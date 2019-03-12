@@ -146,7 +146,7 @@ var onStartRecovery = function () {
 
 
         redisClient.lrange(workerId,0,r,function (err,res) {
-            CroneHandler.SearchCrashedJobData(res,function (err,data) {
+            CroneHandler.SearchCrashedJobData(res,workerId,function (err,data) {
                 // console.log(err);
                 if(data && data.Result)
                 {
