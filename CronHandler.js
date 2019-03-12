@@ -47,7 +47,7 @@ function CronCallbackHandler(callbackObj)
             }
             else if (!error && response != undefined ) {
 
-                var jsonString = messageFormatter.FormatMessage(undefined, "SUCCESS", false, response);
+                var jsonString = messageFormatter.FormatMessage(undefined, "SUCCESS", true, response);
                 logger.debug('[DVP-ScheduledJobManager.CronCallbackHandler] -  Success ',jsonString);
 
 
@@ -69,7 +69,7 @@ function CronCallbackHandler(callbackObj)
 
 };
 
-function SearchCrashedJobData(ids,callback)
+function SearchCrashedJobData(ids,workerId,callback)
 {
     try {
 
@@ -86,7 +86,8 @@ function SearchCrashedJobData(ids,callback)
         if(ids)
         {
             croneCallbacks.body =JSON.stringify({
-                "Ids":ids
+                "Ids":ids,
+                "workerId":workerId
             }) ;
         }
         httpReq(croneCallbacks, function (error, response, data) {
