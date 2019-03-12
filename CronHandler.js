@@ -1,8 +1,6 @@
 
 var httpReq = require('request');
 var config= require('config');
-console.log(config);
-console.log(config.Services);
 var authToken= config.Services.accessToken;
 var messageFormatter = require('dvp-common/CommonMessageGenerator/ClientMessageJsonFormatter.js');
 var logger = require('dvp-common/LogHandler/CommonLogHandler.js').logger;

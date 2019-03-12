@@ -194,8 +194,8 @@ var onNewJobRecieved = function()
             else
             {
 
-                var jsonString = messageFormatter.FormatMessage(undefined, "SUCCESS", true, "No Job requests found ");
-                logger.debug('[DVP-ScheduledJobManager.New Cron] -  Info ',jsonString);
+                /*var jsonString = messageFormatter.FormatMessage(undefined, "SUCCESS", true, "No Job requests found ");
+                logger.debug('[DVP-ScheduledJobManager.New Cron] -  Info ',jsonString);*/
             }
         }
 
