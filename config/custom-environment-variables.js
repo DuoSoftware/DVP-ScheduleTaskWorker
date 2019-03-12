@@ -33,7 +33,7 @@ module.exports = {
     
     "Services":{
         "accessToken": "HOST_TOKEN",
-        "ScheduleWorkerHost":"HOST_SCHEDULEWORKER_HOST",
+        "ScheduleWorkerHost":"SYS_SCHEDULEWORKER_HOST",
         "ScheduleWorkerPort": "HOST_SCHEDULEWORKER_PORT",
         "ScheduleWorkerVersion": "HOST_SCHEDULEWORKER_VERSION"
     }
