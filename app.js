@@ -140,7 +140,7 @@ redisSubsClient.on("connect", function (err) {
 
 var onStartRecovery = function () {
 
-
+console.log("Job Recovery starting");
 
     redisClient.llen(workerId,function (e,r) {
 
@@ -148,13 +148,19 @@ var onStartRecovery = function () {
         redisClient.lrange(workerId,0,r,function (err,res) {
             CroneHandler.SearchCrashedJobData(res,workerId,function (err,data) {
                 // console.log(err);
-                if(data && data.Result)
+                if(data && data.Result.length>0)
                 {
+
+
                     data.Result.forEach(function (item) {
                         item.callback={CallbackURL:item.CallbackURL,CallbackData:item.CallbackData,company:item.company,tenant:item.tenant,CronePattern:item.CronePattern};
                         jobCreater(item,false);
                     })
 
+                }
+                else
+                {
+                    console.log("No Jobs to Recover");
                 }
             })
 
