@@ -22,7 +22,7 @@ console.log(scheduleUrl);
 function CronCallbackHandler(callbackObj)
 {
     try {
-        console.log("Calling callback service : " + callbackObj.CallbackURL + " for cron pattern : " + callbackObj.CronePattern);
+        console.log("Calling callback service : " + callbackObj.CallbackURL + " for cron pattern : " + callbackObj.pattern);
         var croneCallbacks =
             {
                 url: callbackObj.CallbackURL,
