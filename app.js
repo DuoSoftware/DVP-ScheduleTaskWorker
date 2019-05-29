@@ -148,7 +148,7 @@ console.log("Job Recovery starting");
         redisClient.lrange(workerId,0,r,function (err,res) {
             CroneHandler.SearchCrashedJobData(res,workerId,function (err,data) {
                 // console.log(err);
-                if(data && data.Result.length>0)
+                if(data &&  data.Result &&data.Result.length>0)
                 {
 
 
@@ -257,7 +257,7 @@ var jobCreater = function(varObj,isRecordNeeded)
     }
 }
 
-redisSubsClient.subscribe('1:103:cron:removequeue', function (err, count) {
+redisSubsClient.subscribe('cron_removequeue', function (err, count) {
 
 });
 
