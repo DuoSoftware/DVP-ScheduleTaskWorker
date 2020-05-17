@@ -11,7 +11,7 @@ var scheduleUrl;
 if (config.Services && config.Services.ScheduleWorkerHost && config.Services.ScheduleWorkerPort&& config.Services.ScheduleWorkerVersion) {
 
     scheduleUrl = format("http://{0}/DVP/API/{1}/Crons/Recover", config.Services.ScheduleWorkerHost, config.Services.ScheduleWorkerVersion);
-    if (validator.isIP(config.Services.ScheduleWorkerHost))
+    if (config.Services.dynamicPort || validator.isIP(config.Services.ScheduleWorkerHost))
         scheduleUrl = format("http://{0}:{1}/DVP/API/{2}/Crons/Recover", config.Services.ScheduleWorkerHost, config.Services.ScheduleWorkerPort, config.Services.ScheduleWorkerVersion);
 }
 
