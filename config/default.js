@@ -5,8 +5,8 @@ module.exports = {
         "mode":"instance",//instance, cluster, sentinel
         "ip": "138.197.90.92",
         "port": 6389,
-        "user": "duo",
-        "password": "DuoS123",
+        "user": "",
+        "password": "",
         "redisDB":8,
         "sentinels":{
             "hosts": "138.197.90.92,45.55.205.92,138.197.90.92",
