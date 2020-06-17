@@ -28,7 +28,7 @@ module.exports = {
         "ScheduleWorkerHost":"scheduleworker.app.veery.cloud",
         "ScheduleWorkerPort": "8080",
         "ScheduleWorkerVersion": "1.0.0.0",
-        dynamicPort : false
+        dynamicPort : true
     }
 
 
