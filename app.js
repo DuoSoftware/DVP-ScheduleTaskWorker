@@ -227,7 +227,7 @@ var jobCreater = function(varObj,isRecordNeeded)
         try {
             var job =new cronJob(varObj.CronePattern, function() {
 
-                CroneHandler.CronCallbackHandler(this);
+                CroneHandler.CronCallbackHandler(this, redisClient);
 
             }, null, false,varObj.Timezone,varObj.callback);
 
