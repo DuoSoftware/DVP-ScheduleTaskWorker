@@ -21,7 +21,7 @@
     "cron": "^1.1.0",
     "cron-parser": "^2.7.3",
     "dvp-common": "^1.5.2",
-    "ioredis": "^4.6.2",
+    "ioredis": "^4.27.1",
     "request": "^2.88.0",
     "stringformat": "0.0.5",
     "validator": "^10.11.0"
